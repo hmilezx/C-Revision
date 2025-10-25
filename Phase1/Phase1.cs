@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Net.Security;
 
 
 namespace Phase1
@@ -13,8 +14,8 @@ namespace Phase1
 
         public struct taskPriority // each task priority will have its corresponding name and level
         {
-            private int Level { get; }
-            private string Name { get; }
+            private int Level { get; set; }
+            private string Name { get; set; }
 
 
             // set up constructor
@@ -31,9 +32,11 @@ namespace Phase1
         public class User
         {
             public int Id { get; }
-            public string uniqueName { get; }
+            public string uniqueName { get; set; }
 
-            public string Address { get; }
+            public string Address { get; set; }
+
+            public taskPriority priority { get; set; }
 
 
             public User(int id, string uniquename, string address)
@@ -53,6 +56,23 @@ namespace Phase1
 
             //perform copy by value
             taskPriority taskPriority2 = taskPriority1; // this holds the same memory address now
+
+
+            User user2 = user1;
+
+            user2.uniqueName = "Hinrich";
+
+            // Call constructor AND use initializer
+            var user3 = new User(2, "Muertigue", "Home") // set using constructor as theya 
+            {
+                priority = new taskPriority(1, "medium")
+            };
+
+
+            // use constructors for fields that you want to be initialized with a value 
+
+
+
 
             // applies to classes as calsses are reference types and primitivs and structs are value types etc
 
